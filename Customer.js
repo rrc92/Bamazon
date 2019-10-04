@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "ucbsf2019",
-  database: "bamazon_db"
+  database: "BamazonCustomer_db"
 });
 
 
@@ -36,7 +36,7 @@ var Call_Product = function() {
 	inquirer.prompt([{
 		name: "productID",
 		type: "input",
-		message: "Please enter product ID for product you want.",
+		message: "Please enter the ID # you would like to purchase!.",
 		validate: function(value) {
 			if (isNaN(value) === false) {
 				return true;
@@ -46,7 +46,7 @@ var Call_Product = function() {
 	}, {
 		name: "productUnits",
 		type: "input",
-		message: "How many units do you want?",
+		message: "How many items would you like to purchase?",
 		validate: function(value) {
 			if (isNaN(value) === false) {
 				return true;
@@ -72,7 +72,7 @@ var Call_Product = function() {
 				completePurchase(available_stock, price_per_unit, productSales, productDepartment, answer.productID, answer.productUnits);
 			} else {
 
-				console.log("There isn't enough stock left!");
+				console.log("Insufficient quantity!");
 
 				Call_Product();
 			}
@@ -104,10 +104,12 @@ var completePurchase = function(availableStock, price, productSales, productDepa
 
 		if (err) throw err;
 	 
-		console.log("Your purchase is complete.");
+		console.log("Your order has been placed.");
 
 	 
-		console.log("You payment has been received in the amount of : " + totalPrice);
+		console.log("Your payment total was : $" + totalPrice);
+
+		console.log("We appreciate your business, thank you.");
 
 	 
 		
